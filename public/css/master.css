@@ -141,10 +141,17 @@ input, select, textarea{
 
 }
 
-
+.main-chat{
+    padding-bottom:10%;
+}
 
 
 @media (min-width: 410px) {
+
+    .main-chat{
+        padding-bottom:10%;
+    }
+    
     #input_img {
         position:absolute;
         bottom:30%;
@@ -157,6 +164,11 @@ input, select, textarea{
 
 /* Larger than mobile */
 @media (min-width: 300px) {
+
+    .main-chat{
+
+        padding-bottom: 36%;
+    }
    
     .hidden300{
 
@@ -186,6 +198,9 @@ input, select, textarea{
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {
+    .main-chat{
+        padding-bottom:10%;
+    }
     #input_img {
         position:absolute;
         bottom:30%;

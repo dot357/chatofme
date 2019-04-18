@@ -59,7 +59,7 @@
 
 
 
-<div id="chat">
+<div id="chat" class="main-chat">
 
 
 
@@ -78,18 +78,7 @@
 </div>
 </div>
 
- <div class="container">
-    <img src="images/blueplane.png"  class="u-pull-left animated jello  blueplane" >
-
-
-    <div class="row bluebuble animated fadeIn">
  
-
-        <p>12345678901234567890</p>
-      
-      </div>
-
-</div>
    
  
 -->
@@ -144,14 +133,27 @@ var  $message = $('#message');
 var  $chat = $('#chat');
 
 
+function HtmlEncode(s)
+{
+  var el = document.createElement("div");
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}
+
 $messageForm.submit(function(e){
 
   e.preventDefault();
 
 
-  if($message.val() != '') {
+  if($message.val() != '' && $message.val() != ' ' )  {
+
+    
+
+    //buraya xss tagları removelatacağım
+
   //serverdaki send message fonksiyonuna gidiyor
-  socket.emit('send message', $message.val());
+  socket.emit('send message', HtmlEncode($message.val()) );
   $message.val('');
 
 }
