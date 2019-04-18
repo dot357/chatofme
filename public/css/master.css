@@ -1,0 +1,215 @@
+body{
+
+    
+}
+
+.bluebuble{
+
+    background: #528DFF;
+
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 29.5px;
+float: left;
+padding-left: 1.5%;
+padding-right: 1.5%;
+padding-top: 1%;
+padding-bottom: 0%;
+margin-top: 1%;
+margin-left: 1%;
+
+}
+
+.redbuble{
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    background: #C12323;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 29.5px;
+    color:white;
+    float: left;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-top: 1%;
+    padding-bottom: 0%;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+
+.name{
+
+    width: 2em;
+    height: 2em;
+    padding-bottom: 10px;
+
+}
+.mobile-icon{
+    
+    padding: 1em;
+    width: 1em;
+    height: 1em;
+    border-radius: 15px;
+    margin-right: 0.5em;
+    margin-top:0.3em;
+    
+    
+}
+
+.yellow{
+    background: #D8FF69;
+}
+
+.red{
+    background: #C12323;
+
+}
+
+.graybuble{
+
+background: #AFAFAF;
+/*opacity: 0.3;*/
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 29.5px;
+float: left;
+padding-left: 1.5%;
+padding-right: 1.5%;
+padding-top: 1%;
+padding-bottom: 0%;
+margin-top: 1%;
+margin-left: 1%;
+}
+
+
+.blueplane{
+    width: 35px;
+    height: 35px;
+
+}
+
+
+
+.grayplane{
+    margin-top: 1%;
+    width: 35px;
+    height: 35px;
+    float: left;
+
+}
+
+
+.text{
+    padding-left: 0.7em;
+    line-height: 2; 
+}
+
+
+input, select, textarea{
+    color: #ff0000;
+}
+
+
+
+.lineplane{
+
+    width: 2em;
+    height: 2em;
+    
+   
+}
+
+
+
+#input_img {
+    position:absolute;
+    bottom:2px;
+    right:5px;
+    
+}
+
+
+  /* chatbox düzeni */
+.chatbox{
+    
+    position: fixed;
+    width: 100%;
+    top:85%;
+  
+
+
+
+}
+
+
+
+
+@media (min-width: 410px) {
+    #input_img {
+        position:absolute;
+        bottom:30%;
+        right:0.5em!important;
+        
+        
+    }
+
+}
+
+/* Larger than mobile */
+@media (min-width: 300px) {
+   
+    .hidden300{
+
+        visibility: hidden
+    }
+    #input_img {
+        position:absolute;
+        bottom:30%;
+        right:1.5em;
+        
+    }
+
+    .logo{
+
+
+        width: 3em;
+        height: 3em;
+        float: left;    
+    }
+    h4{
+
+        padding-top: 0.3em;
+    }
+
+
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+    #input_img {
+        position:absolute;
+        bottom:30%;
+        right:5px;
+        
+    }
+
+    .logo{
+
+
+        width: 5%;
+        height: 5%;
+        float: left;    
+    }
+    
+
+    
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
