@@ -5,6 +5,20 @@ var io = require('socket.io').listen(server);
 
 
 
+
+
+
+
+function Cipher(data, encodepassword) {
+
+    
+    //burda şifreleme olucak
+
+    //data mesajdan oluşuyor encodepassword de bir string
+    //burda şifreleme algoritması olucak
+    return console.log(data,encodepassword);
+}
+
 var path = require('path'); // bu pathi tanımlıyor
 app.use(express.static(path.join(__dirname, 'public')));  // public dosya kullandırmak için
 
@@ -43,9 +57,12 @@ io.sockets.on('connection', function(socket){
     //Probably i will localy encode it here before i send it and when i recive i will decode it with given paramethers
     socket.on('send message', function(data){
         
+        //Cipher(data,'emre');
+
         io.sockets.emit('new message', {msg: data});
         
-
+        io.sockets.emit('send gif', {gif: data});
+        
     });
 
 });

@@ -13,7 +13,7 @@
   "author": "Emre Can Eskimez",
   "license": "MIT",
   "dependencies": {
-    "socket.io": "*",
-    "express": "*"
+    "express": "*",
+    "socket.io": "*"
   }
 }
