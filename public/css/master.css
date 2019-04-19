@@ -32,6 +32,7 @@ body{
   
   /* Modal Content */
   .modal-content {
+    overflow: auto;
     position: fixed;
     bottom: 0;
     background-color: #fefefe;
@@ -71,6 +72,8 @@ body{
     background: #000;
     color: white;
     opacity: 0.8;
+    
+    
    
 
     }
@@ -117,9 +120,14 @@ body{
 /*giphy*/
 
 .mobile{
+    
+    width: 20vw;
+    overflow: auto;
+}
 
-    width:3em;
-    overflow: visible;
+.gifimg{
+    
+    float: left;
 }
 /*giphy end*/
 
