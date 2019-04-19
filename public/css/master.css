@@ -189,6 +189,7 @@ margin-left: 1%;
     border-radius: 15px;
     margin-right: 0.5em;
     margin-top:0.3em;
+    margin-bottom :1em;
     
     
 }
@@ -284,6 +285,7 @@ input, select, textarea{
 
 @media (min-width: 410px) {
 
+   
     .main-chat{
         padding-bottom:10%;
     }
@@ -300,6 +302,8 @@ input, select, textarea{
 
 /* Larger than mobile */
 @media (min-width: 300px) {
+
+   
 
     .main-chat{
 
@@ -334,6 +338,9 @@ input, select, textarea{
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {
+
+    
+
     .main-chat{
         padding-bottom:10%;
     }
