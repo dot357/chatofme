@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="css/normalize.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+
   
 </head>
 
@@ -30,6 +31,25 @@
 <body>
     
 
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+  
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Modal Header</h2>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the Modal Body</p>
+        <p>Some other text...</p>
+      </div>
+      <div class="modal-footer">
+        <h3>Modal Footer</h3>
+      </div>
+    </div>
+  
+  </div>
 
 <nav class="container u-full-width">
 
@@ -41,7 +61,7 @@
 -->
     <div class="mobile-menu u-full-width">
 
-        <img src="images/name.png"  class="u-pull-right animated jello red mobile-icon" >
+        <img src="images/name.png" id="myBtn"  class="u-pull-right animated jello red mobile-icon" >
         <img src="images/hour.png"  class="u-pull-right animated jello yellow mobile-icon" >
     </div>
 
@@ -182,6 +202,8 @@ socket.on('new message', function(data){
 });
 </script>
 
+
+<script src="/js/fiddle.js"></script>
 
 
 </body>
