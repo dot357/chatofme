@@ -2,7 +2,8 @@ var express = require('express'); //express js i çağırdık
 var app = express();  
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-
+var fs = require('fs');
+var mkdirp = require('mkdirp');
 
 
 
@@ -28,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));  // public dosya kullan
 
 users = [];
 
-connections = [];
+connections = []; //her oda için nameConnections oluştur populasyon ordan hesaplanıcak
 
 server.listen(process.env.PORT || 3000 );  //port belirttik nerden dinliyiceğine dair
 console.log('Server Runing...');
@@ -42,7 +43,8 @@ app.get('/', function(req, res){
 
 });
 
-// app sayfayı sunmak için
+// app sayfasını sunmak için
+/*
 app.get('/app', function(req, res){
 
 
@@ -50,7 +52,7 @@ app.get('/app', function(req, res){
     res.sendFile(__dirname + '/index.html');
     
 
-});
+}); */
 
 io.sockets.on('connection', function(socket){
     //connect 
@@ -66,7 +68,7 @@ io.sockets.on('connection', function(socket){
     });
 
 
-
+ 
     //Send messages
 
     //Probably i will localy encode it here before i send it and when i recive i will decode it with given paramethers
@@ -76,7 +78,77 @@ io.sockets.on('connection', function(socket){
 
         io.sockets.emit('new message', {msg: data});
         
+      
+        
         //io.sockets.emit('send gif', {gif: data});
+        
+    });
+
+
+
+        //bu aranan odaya gitmek için
+
+    socket.on('search', function (data) {
+        //io.sockets.emit('searchs', {search:data});
+
+        //Landingconnections = []; 
+        
+        if(fs.existsSync('/rooms/'+data+'.html')==1){
+
+            console.log(data);
+
+            // app sayfasını sunmak için ROOMSTAN ALICAZ
+            app.get('/'+data, function(req, res){
+
+
+                //before redirect it here get the post method and check the page exist or not if so redirect else create the server
+                res.redirect(__dirname+ '/' + data);
+    
+
+});
+
+
+        }
+        
+        else{
+            //check auth for the site
+            console.log('No file');
+
+            //auth will be here this is test
+
+            var path = __dirname + "/rooms";
+            var tforindex = fs.readFileSync('origin.html');
+            
+            console.log('%s room created',data);
+
+              
+            //tripspaces will be here
+            mkdirp(path, function (err) {
+                const filename = data+'.html';
+                fs.writeFileSync(path + "/" + filename, tforindex) 
+              })
+            
+            
+            
+            
+            
+            // app sayfasını sunmak için ROOMSTAN ALICAZ
+                app.get('/'+data, function(req, res){
+
+
+                //before redirect it here get the post method and check the page exist or not if so redirect else create the server
+                res.sendFile(__dirname + '/rooms/'+data+'.html');
+               
+                
+                });
+
+
+ 
+        }
+
+
+       //Birazdan kullanılmayan serverlar silinicek onu yapıcam
+       
         
     });
 

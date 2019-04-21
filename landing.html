@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="css/skeleton.css">
 <link rel="stylesheet" href="css/normalize.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 
 <link rel="stylesheet" href="css/tingle.css">
 <script src="js/tingle.js"></script>
@@ -37,12 +38,6 @@
   
   <nav class="container u-full-width">
 
-      <!-- Kırmızı isim
-      <div class="redbuble u-pull-right hidden300">
-          <img src="images/name.png"  class="u-pull-left animated jello  name" >
-          Name of the Room
-      </div>
-  -->
      
   
   
@@ -67,19 +62,25 @@
 
 <div class="u-full-width">
 
-    <form action=""  >
+    <form action="" id="searchbox" >
 
 
-        <input placeholder="search for a room" type="text"  style="width:100vw;outline: none;">
+        <input id="search" placeholder="search for a room" type="text"  style="width:100vw;outline: none;">
     </form>
 
+    <div>
+        
+          <center>  <button id="btnHidden" style="visibility: hidden;" class="animated bounceIn"><a id="link" href="http://localhost:3000/emre">Enter the room</a> </button></center>
+        
+        
+    </div>
 
     <div class=" five columns u-pull-left" >
 
         <h4>Popular Chanels Now</h4>
 
         <ol>
-            <li>Ankara</li>
+            <li> Ankara</li>
             <li>İstanbul</li>
             <li>Dedikodu</li>
             <li>İtiraf</li>
@@ -139,8 +140,50 @@
 </html>
 
 
+ <script>
+ 
+ 
+ function HtmlEncode(s)
+{
+  var el = document.createElement("div");
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}
+var  socket =  io.connect();
+var $searchbox = $('#searchbox');
+var  $search = $('#search');
+var link = document.getElementById('link');
+
+ 
+
+$searchbox.submit(function(e){
+
+  e.preventDefault();
 
 
- <!-- Scripts buraya gelicek burdan local encoding ve storage yapabilirim 
-aynı zamanda socketlarda buraya gelicek-->
+  if($search.val() != '' && $search.val() != ' ' )  {  //burda bütünboşlukları trimletebilirim
 
+    
+
+    //buraya xss tagları removelatacağım
+
+  //serverdaki send message fonksiyonuna gidiyor
+  socket.emit('search', HtmlEncode($search.val()) );
+  //set link value
+  var path = '/'+$search.val();
+  link.setAttribute('href',path);
+  //visible
+  
+  document.getElementById("btnHidden").style.visibility = "visible";
+  $search.val('');
+
+} 
+
+else  
+  console.log("You cant send an empty message");
+  
+
+});
+ 
+ </script>
