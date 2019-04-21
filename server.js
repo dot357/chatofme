@@ -37,8 +37,18 @@ console.log('Server Runing...');
 // ana sayfayı sunmak için
 app.get('/', function(req, res){
 
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/landing.html');
     //res.sendFile(__dirname + '/landing.html');
+
+});
+
+// app sayfayı sunmak için
+app.get('/app', function(req, res){
+
+
+    //before redirect it here get the post method and check the page exist or not if so redirect else create the server
+    res.sendFile(__dirname + '/index.html');
+    
 
 });
 
