@@ -16,6 +16,10 @@ function Cipher(data, encodepassword) {
 
     //data mesajdan oluşuyor encodepassword de bir string
     //burda şifreleme algoritması olucak
+
+
+
+
     return console.log(data,encodepassword);
 }
 
@@ -61,7 +65,7 @@ io.sockets.on('connection', function(socket){
 
         io.sockets.emit('new message', {msg: data});
         
-        io.sockets.emit('send gif', {gif: data});
+        //io.sockets.emit('send gif', {gif: data});
         
     });
 
