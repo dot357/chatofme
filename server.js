@@ -60,11 +60,12 @@ io.sockets.on('connection', function(socket){
 
 
     socket.on('join', function(data){
-        console.log('User Joined the '+data);
+        
+        console.log('User Joined the room => '+data);
         //console.log(this.rooms.length);
  
         socket.join(data);
-        console.log(data+' Joined');
+        
 
         });
     
@@ -84,22 +85,23 @@ io.sockets.on('connection', function(socket){
     //Send messages
 
     //Probably i will localy encode it here before i send it and when i recive i will decode it with given paramethers
-    socket.on('send message', function(data){
+    socket.on('send message', function({ msg, roomName  }){
         
         //Cipher(data,'emre');
         
         //console.log('room recieved name is ' + data); oda adını gösteriyor
-        socket.broadcast.to(data).emit('new message', {msg: data});
+        //socket.broadcast.to(data).emit('new message', {msg: data});
         //io.sockets.broadcast.on(data).emit('new message', {msg: data});
-        socket.to(data).emit('new message', {msg: data});
-        io.sockets.emit('new message', {msg: data});
-        
+        socket.to(roomName).emit('new message', {msg});
+        //io.sockets.emit('new message', {msg});
+        console.log(msg, roomName);
     
       
         
         //io.sockets.emit('send gif', {gif: data});
         
     });
+
 
 
 
@@ -165,7 +167,7 @@ io.sockets.on('connection', function(socket){
 
 
        //Birazdan kullanılmayan serverlar silinicek onu yapıcam
-       console.log(data);
+      
       
         
     });

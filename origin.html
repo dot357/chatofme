@@ -126,20 +126,11 @@
 
 <script>
   //first of all i have to pass the name of the room in order to connect the correct room
-
-
   function trimurl(x) {
   let dirname = "http://localhost:3000/"  //this will be replaced
   return x.replace(dirname,'');
 }
-
-
-
-
-
-
 $(function(){
-
 var roomname=trimurl(document.URL);
 var  socket =  io.connect(); //burda girişte bağlamayı halletiğin an tammadır 
 socket.emit('join',roomname);
@@ -154,18 +145,16 @@ function HtmlEncode(s)
   s = el.innerHTML;
   return s;
 }
-
-
 $('#roomname').append(HtmlEncode(roomname));  // burda eğer 7 karakterden uzunsa Liberi.World yazsın
-
-
 $messageForm.submit(function(e){
   e.preventDefault();
   if($message.val() != '' && $message.val() != ' ' )  {
     
     //buraya xss tagları removelatacağım
   //serverdaki send message fonksiyonuna gidiyor
-  socket.emit('send message', HtmlEncode($message.val()),roomname );
+  //socket.emit('send message', HtmlEncode($message.val()),roomname );
+
+  socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname });
   $chat.append('<div class="container">'+ '<img src="images/grayplane.png"  class="u-pull-left animated jello  blueplane" >'+'<div class="row graybuble animated fadeIn">'+ '<p>' + $message.val() + '</p>'  + '</div>'  +'</div>' ) ;
   $message.val('');
 }
@@ -174,18 +163,13 @@ else
   
 });
  
-
 socket.on('new message', function(data){
   
-  console.log(data);
+  //console.log(data+ '<br /> room name : ' + roomname);
   $chat.append('<div class="container">'+ '<img src="images/blueplane.png"  class="u-pull-left animated jello  blueplane" >'+'<div class="row bluebuble animated fadeIn">'+ '<p>' + data.msg + '</p>'  + '</div>'  +'</div>' ) ;
  
 });
 });
-
-
-
-
 </script>
 
 
