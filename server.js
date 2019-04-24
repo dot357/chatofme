@@ -89,7 +89,9 @@ io.sockets.on('connection', function(socket){
         //Cipher(data,'emre');
         
         //console.log('room recieved name is ' + data); oda adını gösteriyor
-        socket.broadcast.to(data).emit('new message', {msg: data});
+        //socket.broadcast.to(data).emit('new message', {msg: data});
+        //io.sockets.broadcast.on(data).emit('new message', {msg: data});
+        socket.to(data).emit('new message', {msg: data});
         //io.sockets.emit('new message', {msg: data});
         
     
