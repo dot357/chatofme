@@ -338,6 +338,22 @@ input, select, textarea{
     
     }
 
+    .graybuble{ 
+
+        background: #AFAFAF;
+    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 29.5px;
+    float: left;
+    padding: 3%;
+    padding-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    min-height: 40px;
+    height: auto;
+    
+    }
+
     .main-chat{
 
         padding-bottom: 36%;
