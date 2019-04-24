@@ -27,7 +27,7 @@ function Cipher(data, encodepassword) {
 var path = require('path'); // bu pathi tanımlıyor
 app.use(express.static(path.join(__dirname, 'public')));  // public dosya kullandırmak için
 
-users = [];
+roomlist = [];
 
 connections = []; //her oda için nameConnections oluştur populasyon ordan hesaplanıcak
 
@@ -53,17 +53,29 @@ app.get('/app', function(req, res){
     
 
 }); */
+var defRoom = "index";
 
 io.sockets.on('connection', function(socket){
-    //connect 
-    connections.push(socket);
-    console.log('Connected: %s sockets connected', connections.length);
+
+
+
+    socket.on('join', function(data){
+        console.log('User Joined the '+data);
+        console.log(this.rooms.length);
+
+        socket.join(data);
+        console.log(data+' Joined');
+
+        });
+    
+   
+   
 
     //disconnect
     socket.on('disconnect', function(data){
 
         connections.splice(connections.indexOf(socket), 1);
-        console.log('Disconnected: %s sockets connected', connections.length); 
+        
 
     });
 
@@ -75,8 +87,10 @@ io.sockets.on('connection', function(socket){
     socket.on('send message', function(data){
         
         //Cipher(data,'emre');
+        console.log(data.room);
+        socket.broadcast.to(data.room).emit('new message', {msg: data});
 
-        io.sockets.emit('new message', {msg: data});
+        
         
       
         
@@ -148,7 +162,8 @@ io.sockets.on('connection', function(socket){
 
 
        //Birazdan kullanılmayan serverlar silinicek onu yapıcam
-       
+       console.log(data);
+      
         
     });
 
