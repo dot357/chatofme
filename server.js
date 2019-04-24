@@ -85,12 +85,12 @@ io.sockets.on('connection', function(socket){
     //Send messages
 
     //Probably i will localy encode it here before i send it and when i recive i will decode it with given paramethers
-    socket.on('send message', function({ msg, roomName  }){
+    socket.on('send message', function({ msg, roomName }){
         
         //Cipher(data,'emre');
         
         //console.log('room recieved name is ' + data); oda adını gösteriyor
-        socket.broadcast.to(roomName).emit('new message', {msg});
+        socket.broadcast.emit('new message', {msg});
         
         //socket.to(roomName).emit('new message', {msg});
         //io.sockets.emit('new message', {msg});
