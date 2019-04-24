@@ -165,7 +165,7 @@ $messageForm.submit(function(e){
     
     //buraya xss tagları removelatacağım
   //serverdaki send message fonksiyonuna gidiyor
-  socket.emit('send message', HtmlEncode($message.val()) );
+  socket.emit('send message', HtmlEncode($message.val()),roomname );
   $chat.append('<div class="container">'+ '<img src="images/grayplane.png"  class="u-pull-left animated jello  blueplane" >'+'<div class="row graybuble animated fadeIn">'+ '<p>' + $message.val() + '</p>'  + '</div>'  +'</div>' ) ;
   $message.val('');
 }

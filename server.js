@@ -61,8 +61,8 @@ io.sockets.on('connection', function(socket){
 
     socket.on('join', function(data){
         console.log('User Joined the '+data);
-        console.log(this.rooms.length);
-
+        //console.log(this.rooms.length);
+ 
         socket.join(data);
         console.log(data+' Joined');
 
@@ -88,8 +88,9 @@ io.sockets.on('connection', function(socket){
         
         //Cipher(data,'emre');
         
-        //socket.broadcast.to(data.room).emit('new message', {msg: data});
-        io.sockets.emit('new message', {masg:data});
+        //console.log('room recieved name is ' + data); oda adını gösteriyor
+        socket.broadcast.to(data).emit('new message', {msg: data});
+        //io.sockets.emit('new message', {msg: data});
         
     
       
