@@ -177,7 +177,7 @@ else
 
 socket.on('new message', function(data){
   
-  
+  console.log(data);
   $chat.append('<div class="container">'+ '<img src="images/blueplane.png"  class="u-pull-left animated jello  blueplane" >'+'<div class="row bluebuble animated fadeIn">'+ '<p>' + data.msg + '</p>'  + '</div>'  +'</div>' ) ;
  
 });
