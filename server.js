@@ -87,11 +87,11 @@ io.sockets.on('connection', function(socket){
     socket.on('send message', function(data){
         
         //Cipher(data,'emre');
-        console.log(data.room);
-        socket.broadcast.to(data.room).emit('new message', {msg: data});
-
         
+        //socket.broadcast.to(data.room).emit('new message', {msg: data});
+        io.sockets.emit('new message', {masg:data});
         
+    
       
         
         //io.sockets.emit('send gif', {gif: data});
