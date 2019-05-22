@@ -125,23 +125,28 @@
 
 
 <script>
-  //first of all i have to pass the name of the room in order to connect the correct room
-  function trimurl(x) {
-  let dirname1 = "https://liberiworld.herokuapp.com/"  //this will be replaced 
-  let dirname2 = "http://liberiworld.herokuapp.com/"
 
-
-  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    return x.replace(dirname2,'');
-}
-  else  
-  return x.replace(dirname1,'');
-  
-
-  
-}
 $(function(){
-var roomname=trimurl(document.URL);
+var roomname=document.URL;
+
+
+
+function roomTrimmer(x){
+
+tempUrl = x;
+tempUrl = tempUrl.replace('http','');
+tempUrl = tempUrl.replace('/','');
+tempUrl = tempUrl.replace(':','');
+tempUrl = tempUrl.replace('localhost:3000','');
+tempUrl = tempUrl.replace('//','');
+
+//debug  console.log("temp  => ",tempUrl);
+
+ return tempUrl;
+
+}
+
+
 
 
 var  socket =  io.connect(); //burda girişte bağlamayı halletiğin an tammadır 
@@ -157,7 +162,7 @@ function HtmlEncode(s)
   s = el.innerHTML;
   return s;
 }
-$('#roomname').append(HtmlEncode(roomname));  // burda eğer 7 karakterden uzunsa Liberi.World yazsın
+$('#roomname').append(HtmlEncode(roomTrimmer(roomname)));  // burda eğer 7 karakterden uzunsa Liberi.World yazsın
 $messageForm.submit(function(e){
   e.preventDefault();
   if($message.val() != '' && $message.val() != ' ' )  {

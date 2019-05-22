@@ -6,7 +6,20 @@ var fs = require('fs');
 var mkdirp = require('mkdirp');
 
 
+function trimmer(x){
 
+    tempUrl = x;
+    tempUrl = tempUrl.replace('http','');
+    tempUrl = tempUrl.replace('/','');
+    tempUrl = tempUrl.replace(':','');
+    tempUrl = tempUrl.replace('localhost:3000','');
+    tempUrl = tempUrl.replace('//','');
+   
+  //debug  console.log("temp  => ",tempUrl);
+
+     return tempUrl;
+   
+}
 
 
 
@@ -60,11 +73,22 @@ io.sockets.on('connection', function(socket){
 
 
     socket.on('join', function(data){
+
         
-        console.log('User Joined the room => '+data);
+        
+       
         //console.log(this.rooms.length);
- 
-        socket.join(data);
+
+        console.log(data);
+
+     
+
+        let localTemp = trimmer(data);
+
+        console.log('User Joined the room => '+ localTemp);
+        
+        socket.join(localTemp);
+        
         
 
         });
@@ -88,13 +112,13 @@ io.sockets.on('connection', function(socket){
     socket.on('send message', function({ msg, roomName }){
         
         //Cipher(data,'emre');
+        let localroomName = trimmer(roomName);
         
-        
-        socket.broadcast.to(roomName).emit('new message', {msg});  //mesajı client olmayan odadaki herkese yolluor
+        socket.broadcast.to(localroomName).emit('new message', {msg});  //mesajı client olmayan odadaki herkese yolluor
 
         
         
-        console.log(msg, roomName);
+        console.log("message:%s => roomName:%s",msg, localroomName);
     
       
         
