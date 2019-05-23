@@ -10,6 +10,11 @@ function trimmer(x){
 
     tempUrl = x;
     tempUrl = tempUrl.replace('http','');
+    tempUrl = tempUrl.replace('https','');
+    tempUrl = tempUrl.replace('//','');
+
+
+
     
     //console.log("http removed");
     
