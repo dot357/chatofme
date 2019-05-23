@@ -11,26 +11,27 @@ function trimmer(x){
     tempUrl = x;
     tempUrl = tempUrl.replace('http','');
     
-    console.log("http removed");
+    //console.log("http removed");
     
     tempUrl = tempUrl.replace(':','');
 
-    console.log(": removed");
+    //console.log(": removed");
     tempUrl = tempUrl.replace('/','');
 
-    console.log("/ removed");
+    //console.log("/ removed");
+
     tempUrl = tempUrl.replace('localhost:3000','');
 
-    console.log("local removed");
+    //console.log("local removed");
 
 
     tempUrl = tempUrl.replace('liberiworld.herokuapp.com','');
     
-    console.log("liberi removed");
+    //console.log("liberi removed");
 
     tempUrl = tempUrl.replace('//','');
 
-    console.log("// removed");
+    //console.log("// removed");
    
   //debug  console.log("temp  => ",tempUrl);
 
