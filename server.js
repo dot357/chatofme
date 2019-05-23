@@ -3,11 +3,64 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var fs = require('fs');
+
+//make dir rm dir
 var mkdirp = require('mkdirp');
+var rmdir = require('rmdir');
+
+
+var path = require('path');
+
+
+
+
+
+
+
+//this will be output rooms 
+console.log("Server Starting...");
+console.log("List of the rooms before the last dump");
+
+
+    
+
+
+
+
+var dirPath = path.join(__dirname, 'rooms');
+
+    fs.readdir(dirPath, function (err, files) {
+        if (err) {
+            return console.log('Unable to scan dir ' + err);
+        } 
+        files.forEach(function (file) {
+            // Do something with the file.
+            console.log(file); 
+        });
+    }); 
+//server wipe will be done every 20 min
+//this will be the timer
+
+//When server reboot delete all the rooms
+//recursively deletes all files included rooms dir 
+
+rmdir(dirPath , function (err, dirs, files) {
+  console.log(dirs);
+  console.log(files);
+  console.log('all files are removed');
+});
+
+
+
+
+
+
+
 
 
 function trimmer(x){
-
+    //web server alınca burayı fixle urlyi düzgün silemiyor
+    
     tempUrl = x;
     tempUrl = tempUrl.replace('http','');
     tempUrl = tempUrl.replace('https','');

@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "*",
     "mkdirp": "^0.5.1",
-    "socket.io": "*"
+    "socket.io": "*",
+    "rmdir": "*"
   }
 }
