@@ -278,10 +278,11 @@ var roomname=document.URL;
 function roomTrimmer(x){
 
 tempUrl = x;
-tempUrl = tempUrl.replace('http','');
+tempUrl = tempUrl.replace('https','');
 tempUrl = tempUrl.replace('/','');
+tempUrl = tempUrl.replace('//','');
 tempUrl = tempUrl.replace(':','');
-tempUrl = tempUrl.replace('localhost:3000','');
+tempUrl = tempUrl.replace('app.liberi.world','');
 tempUrl = tempUrl.replace('//','');
 
 //debug  console.log("temp  => ",tempUrl);

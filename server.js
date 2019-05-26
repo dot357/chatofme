@@ -79,12 +79,12 @@ function trimmer(x){
 
     //console.log("/ removed");
 
-    tempUrl = tempUrl.replace('localhost:3000','');
+    tempUrl = tempUrl.replace('app.liberi.world','');
 
     //console.log("local removed");
 
 
-    tempUrl = tempUrl.replace('liberiworld.herokuapp.com','');
+    tempUrl = tempUrl.replace('165.227.149.7:3000','');
     
     //console.log("liberi removed");
 
