@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 
-  <meta charset="utf-8"> 
-  <title>landing</title>
+  <meta charset="utf-8">
+  <title>LIBERI.WORLD</title>
   <meta name="description" content="">
   <meta name="author" content="Emre Can Eskimez">
 
@@ -19,124 +19,166 @@
   <!--Animation.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <link rel="stylesheet" href="css/master.css">
-<link rel="stylesheet" href="css/skeleton.css">
-<link rel="stylesheet" href="css/normalize.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
+
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
 <script src="/socket.io/socket.io.js"></script>
 
-<link rel="stylesheet" href="css/tingle.css">
-<script src="js/tingle.js"></script>
+
+
 </head>
 
-<html>
+
+
+
 <body>
     
-    
-
 
   
   
-  <nav class="container u-full-width">
-
-     
-  
-  
-         <!--logo-->
-    <img src="images/spy.png" class="logo " alt="">
-    <h4 class=""  > LIBERI.WORLD</h4>
-  
-    
-   
-  </nav>
 
 
+  <div class="mx-auto">
 
-<script src="/js/fiddle.js"></script>
+    <button id="btnHidden"  class="btnHid bg-gray-600 text-white p-2 rounded-full animated pulse infinite pointer"><a id="link" href="http://localhost:3000/emre">Enter the room</a> </button>
 
-
-
-
-
+  </div>
 
 
-
-<div class="u-full-width">
-
-    <form action="" id="searchbox" >
+<footer class="  bg-gray-300 w-full float-left  animated  slideInUp " id="form">
 
 
-        <input id="search" placeholder="search for a room" type="text"  style="width:100vw;outline: none;">
+ 
+
+  <!-- Searchbox start-->
+  <form id="searchbox"  class=" " >
+      
+      <div class="p-3 flex items-center shadow py-2">
+           
+          <img class="pointer shadow-md" id="hide" src="/images/spy.png" style="width: 2.5em;" alt="">
+                     
+                    
+        <input id="search" class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Room Name" aria-label="Full name">
+        <button class=" mr-5 float-right  bg-transparent text-black  ">
+              <i id="searchButton" class=" fab fa-searchengin fa-2x  "></i>
+            </button>
+       
+      </div>
     </form>
 
-    <div>
-        
-          <center>  <button id="btnHidden" style="visibility: hidden;" class="animated bounceIn"><a id="link" href="http://localhost:3000/emre">Enter the room</a> </button></center>
-        
-        
-    </div>
+  <!-- Search box end-->
 
 
-    <div class="container">
-      <p>
-        -New Theme coming soon <br>
-        -Pathfinding is improving <br>
-        -Gif support will be unlocked soon <br>
-        
-      </p>
-      <i> Emre Can Eskimez</i>
+
+</footer>
 
 
-            
-    </div>
+
+
+
+
+
+<script>
+
+ 
+  function HtmlEncode(s)
+ {
+   var el = document.createElement("div");
+   el.innerText = el.textContent = s;
+   s = el.innerHTML;
+   return s;
+ }
+ var  socket =  io.connect();
+ var $searchbox = $('#searchbox');
+ var  $search = $('#search');
+ var link = document.getElementById('link');
+ 
+  
+ 
+ $searchbox.submit(function(e){
+ 
+   e.preventDefault();
+ 
+ 
+   if($search.val() != '' && $search.val() != ' ' )  {  //burda bütünboşlukları trimletebilirim
+ 
+     
+ 
+     //buraya xss tagları removelatacağım
+ 
+   //serverdaki send message fonksiyonuna gidiyor
+   socket.emit('search', HtmlEncode($search.val()) );
+   //set link value
+   var path = '/'+$search.val();
+   link.setAttribute('href',path);
+   //visible
+   
+   
+   $search.val('');
+ 
+ } 
+ 
+ else  
+   console.log("You cant send an empty message");
+   
+ 
+ });
+
+
+
+
+
+
+ $("#searchButton").click(function(f) {
+  f.preventDefault();
+  
+
+  let room=HtmlEncode($search.val());
+
+  if($search.val() != '' && $search.val() != ' ' )  { 
+
+
+    socket.emit('search', room );
+    
+  var path = '/'+room;
+  link.setAttribute('href',path);
+  //document.getElementById("btnHidden").style.visibility = "visible";
+
+  $('#btnHidden').animate({opacity: "1"});
+  }
+
+  else
+  console.log("You cant send an empty message");
+
+ });
+
+
+
+
+  
+  </script>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
 
+<script src="/js/animations.js"></script>
 
- <script>
-
- 
- function HtmlEncode(s)
-{
-  var el = document.createElement("div");
-  el.innerText = el.textContent = s;
-  s = el.innerHTML;
-  return s;
-}
-var  socket =  io.connect();
-var $searchbox = $('#searchbox');
-var  $search = $('#search');
-var link = document.getElementById('link');
-
- 
-
-$searchbox.submit(function(e){
-
-  e.preventDefault();
-
-
-  if($search.val() != '' && $search.val() != ' ' )  {  //burda bütünboşlukları trimletebilirim
-
-    
-
-    //buraya xss tagları removelatacağım
-
-  //serverdaki send message fonksiyonuna gidiyor
-  socket.emit('search', HtmlEncode($search.val()) );
-  //set link value
-  var path = '/'+$search.val();
-  link.setAttribute('href',path);
-  //visible
-  
-  document.getElementById("btnHidden").style.visibility = "visible";
-  $search.val('');
-
-} 
-
-else  
-  console.log("You cant send an empty message");
-  
-
-});
- 
- </script>

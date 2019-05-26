@@ -19,7 +19,8 @@ var path = require('path');
 
 //this will be output rooms 
 console.log("Server Starting...");
-console.log("List of the rooms before the last dump");
+console.log("File dump started =>");
+console.log("List of the rooms before the last dump:");
 
 
     
@@ -31,7 +32,7 @@ var dirPath = path.join(__dirname, 'rooms');
 
     fs.readdir(dirPath, function (err, files) {
         if (err) {
-            return console.log('Unable to scan dir ' + err);
+            return console.log('No rooms to deleted'  );
         } 
         files.forEach(function (file) {
             // Do something with the file.
@@ -121,7 +122,14 @@ roomlist = [];
 connections = []; //her oda için nameConnections oluştur populasyon ordan hesaplanıcak
 
 server.listen(process.env.PORT || 3000 );  //port belirttik nerden dinliyiceğine dair
-console.log('Server Runing...');
+console.log('Server Runing and Functioning...');
+
+
+
+
+//Add 404 support
+
+
 
 
 // ana sayfayı sunmak için
@@ -129,6 +137,7 @@ app.get('/', function(req, res){
 
     res.sendFile(__dirname + '/landing.html');
     //res.sendFile(__dirname + '/landing.html');
+    
 
 });
 
@@ -275,4 +284,4 @@ io.sockets.on('connection', function(socket){
 });
 
 
- 
+//Add 404 page please

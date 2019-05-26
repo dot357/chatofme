@@ -19,14 +19,20 @@
   <!--Animation.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <link rel="stylesheet" href="css/master.css">
-<link rel="stylesheet" href="css/skeleton.css">
-<link rel="stylesheet" href="css/normalize.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<link rel="stylesheet" href="css/tingle.css">
-<script src="js/tingle.js"></script>
 
-<script src="/js/fiddle.js"></script>
+
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
+
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+
 
 </head>
 
@@ -36,58 +42,104 @@
     
 
 
-  
-  </div>
-  <nav class="container u-full-width">
+ 
+<!-- new nav bar-->
 
-      <!-- Kırmızı isim
-      <div class="redbuble u-pull-right hidden300">
-          <img src="images/name.png"  class="u-pull-left animated jello  name" >
-          Name of the Room
-      </div>
-  -->
-      <div class="mobile-menu u-full-width">
+
+
+<div class="sticky top-0 bg-white w-full p-2  float-left      " >
   
-          <img src="images/name.png" id="myBtn"  class="js-tingle-modal-3 u-pull-right animated jello red mobile-icon" >
-          <img src="images/hour.png"  class="u-pull-right animated jello yellow mobile-icon" >
-      </div>
-  
-  
-  
-         <!--logo-->
-    <img src="images/spy.png" class="logo " alt="">
-    <h4 ><span id="roomname">/</span> </h4>
-  
+
+       
+                   
+  <img id="close" class="pointer shadow-md ml-1 float-left" src="/images/spy.png" style="width: 2.5em;" alt="">
     
+
+  <span id="roomName" class=" p-2 position  text-gray-500 leading-loose"> </span>
+     <!-- 
+      More funcs can be added at top of the second menu   
+       
+
+      
+      <i class="fas fa-share-alt float-right p-2"></i>
+    
+      -->
+     <a href="/"> <i id="darkpalette" class="fas fa-search float-right p-2"></i></a>
+      
+</div>
+
+
+
+
+
+
+
+<!-- new nav bar end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
   
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="chat" >
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Utility boxes and perks start-->
+<div id="utilities" class=" utility-box  invisible shadow-inner  bg-gray-300   w-full float-left">
+  <div>
+      <i id="utilities-close" class="p-2  float-right far fa-times-circle "></i>
+
+  </div>
+  
+<div class="p-3">
+
+  This area will give random gifs every time it opens
+  
+
+
+  <!-- this will be use camera app
+    <input type="file" accept="image/*" capture="camera" />
+  -->
    
-  </nav>
-
-
-
-<div id="chat" class="main-chat">
-
-
-
-
+</div>  
 </div>
-
-<!--
-<div class="container ">
-    <img src="images/grayplane.png"  class="u-pull-left  grayplane" >
-  <div class="row graybuble">
- 
-  <p>12345678901234567890</p>
-</div>
-</div>
- 
-   
- 
--->
-
- 
-
-
+<!-- Utility boxes and perks end-->
 
 
 
@@ -95,22 +147,114 @@
    
 
    <!--footer-->
-    <footer class="chatbox" >
+   <footer id="chatGimmick" class=" bg-gray-200  w-full float-left  rounded-full " >
 
-      <form class="" id="messageForm">
+      
+     <!-- msg start-->
+     <form   id="messageForm">
     
-      <div class="container   text-area ">
+    
+    
+      <div  class="p-3 flex items-center ">
          
-          
-        <textarea class="u-full-width adjust"  id="message" placeholder="Enter your message here!" type="text"  style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);width:100%;height:1%!important;background-color:black;border:0;color:white;outline: none;opacity: 0.7;border-radius: 25px;"></textarea>
-       
-        <button value="Send Message" id="input_img" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);background: #1eff87;border: none;border-radius: 100px;" alt=""> <img src="images/lineplane.png" class="lineplane u-pull-right "  alt=""> </button>
+        <input id="message"  class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter a message" aria-label="Message">
+     
+
+       <div class="w-1/12 mr-1">
+                   
+                  
+        <i id="utilities-open" class="pointer fas fa-hat-wizard text-gray-800  float-right   p-2 rounded-full"></i>
         
+      </div>
+
+       <div class="w-1/12 mr-1">
+                    
+        <div id="cambox" class="cam-box   " >
+            
+            <i id="cambox-clip" class="animated pulse infinite shadow-md   bg-gray-400   pointer fas fa-camera text-gray-900  float-right   p-2 rounded-full"></i>
+            <i  id="cambox-cam" class="animated pulse infinite shadow-md  bg-gray-400  mr-2 pointer fas fa-paperclip text-gray-900  float-right   p-2 rounded-full"></i>
+            
+            
+            <!--
+              <input id="cambox-cam-open" class="invisible" type="file" accept="image/*" capture="camera" />
+
+            -->
+            <input id="cambox-cam-open" class="invisible" type="file" accept="image/*" capture="camera" />
+       </div>
+        
+
+        <i id="cambox-open" class="pointer fas fa-camera text-gray-800  float-right   p-2 rounded-full"></i>
+        
+      </div>
+      <div  class="w-1/12 mr-1">
+
+        
+
+        <i id="swipezone" class="chatClose pointer float-right fas fa-arrow-left text-white  bg-gray-800 p-2 rounded-full"></i>
+        
+
+         
+        <i id="sender" class="pointer float-right fas fa-paper-plane text-white  bg-green-500 p-2 rounded-full"></i>
+        
+
+        
+        
+
+       
+      </div>
+
+
+      
+     
+        
+    
+
+
+
+       <!--Utilities buttons end-->
+
+
+
+       
       </div>
       
       
     </form>
     </footer>
+
+
+
+
+
+<!-- footer two start-->
+
+
+
+
+<footer id="chatclose" class=" invisible ml-3   float-left  rounded-full " >
+        
+
+          
+            
+
+  <i class=" animated pulse infinite float-left fas fa-paper-plane text-white  bg-green-500 p-2 rounded-full"></i>
+          
+
+
+ 
+  </footer>
+
+
+
+<!-- fotter two end-->
+
+
+
+
+
+
+
+
    <!--/footer-->
 
 
@@ -155,14 +299,42 @@ var  $messageForm = $('#messageForm');
 var  $message = $('#message');
 var  $chat = $('#chat');
 var  $output = $('#output');
+
 function HtmlEncode(s)
 {
-  var el = document.createElement("div");
+  var el = document.createElement("div"); 
   el.innerText = el.textContent = s;
   s = el.innerHTML;
   return s;
 }
-$('#roomname').append(HtmlEncode(roomTrimmer(roomname)));  // burda eğer 7 karakterden uzunsa Liberi.World yazsın
+
+
+
+$('#roomName').append(HtmlEncode( '/' + roomTrimmer(roomname)));
+
+
+
+// msg send tools start
+
+$("#sender").click(function(f) {
+  f.preventDefault();
+
+
+  let msg = HtmlEncode($message.val());
+  
+  if($message.val() != '' && $message.val() != ' ' )  {
+    socket.emit('send message', { msg:msg,roomName:roomname });
+    $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
+     $message.val('');
+
+
+  }
+  else  
+      console.log("You cant send an empty message");
+});
+
+
+ 
 $messageForm.submit(function(e){
   e.preventDefault();
   if($message.val() != '' && $message.val() != ' ' )  {
@@ -172,18 +344,23 @@ $messageForm.submit(function(e){
   //socket.emit('send message', HtmlEncode($message.val()),roomname );
 
   socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname });
-  $chat.append('<div class="container">'+ '<img src="images/grayplane.png"  class="u-pull-left animated jello  blueplane" >'+'<div class="row graybuble animated fadeIn">'+ '<p>' + $message.val() + '</p>'  + '</div>'  +'</div>' ) ;
+  $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
   $message.val('');
 }
 else  
   console.log("You cant send an empty message");
   
 });
+
+// msg send tools end
+
+
+
  
 socket.on('new message', function(data){
   
   //console.log(data+ '<br /> room name : ' + roomname);
-  $chat.append('<div class="container">'+ '<img src="images/blueplane.png"  class="u-pull-left animated jello  blueplane" >'+'<div class="row bluebuble animated fadeIn">'+ '<p>' + data.msg + '</p>'  + '</div>'  +'</div>' ) ;
+  $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg   + '</span>'  +'</div>' ) ;
  
 });
 });
@@ -193,7 +370,8 @@ socket.on('new message', function(data){
 
 </body>
 </html>
-
+<script src="/js/gimmick.js"></script>
+<script src="/js/animations.js"></script>
 
 
 

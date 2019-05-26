@@ -1,452 +1,53 @@
-body{
 
+  .cam-box{
+    z-index: 1;
+    position: absolute;
+    top:-4vh;
+    right: 7vw;
     
-}
 
-.adjust{
-
-    overflow:hidden!important;
-    resize:none!important;
-}
-
-/*modal*/
-
-
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
-    -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s
   }
-  
-  /* Modal Content */
-  .modal-content {
-    overflow: auto;
+  .utility-box{
+    z-index: 1;
     position: fixed;
-    bottom: 0;
-    background-color: #fefefe;
-    width: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s
+    top:51vh;
+    min-height: 48vh;
+
   }
-  
-  /* The Close Button */
-  .close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  footer{
+
+    position: fixed;
+    top:88vh;
   }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
+  .pointer{
+
+
     cursor: pointer;
   }
-  
-  .modal-header {
-    padding: 2px 5px;
-    background: #000;
-    color: white;
-    opacity: 0.8;
-    
-  }
 
-  
-  .modal-body {padding: 2px 16px;
+  .position{
 
-    background: #000;
-    color: white;
-    opacity: 0.8;
-    
-    
-   
 
-    }
-  
-  .modal-footer {
-    padding: 2px 16px;
-    background: #000;
-    color: white;
-    opacity: 0.8;
-    overflow-y: scroll;
+    position:relative;
+    top:1vh;
   }
 
 
-  /* Add Animation */
-@-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0} 
-    to {bottom: 0; opacity: 1}
-  }
-  
-  @keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
-    to {bottom: 0; opacity: 1}
-  }
-  
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
-  }
-  
-  @keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+  .chatClose{
+
+    
+    position: absolute;
+    top:-5vh;
+    right: 5vw;
+
+
   }
 
-
-/*modal end*/
-
-
-
-
-
-
-
-/*giphy*/
-
-.mobile{
-    
-    width: 20vw;
-    overflow: auto;
-}
-
-.gifimg{
-    
-    float: left;
-}
-/*giphy end*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.bluebuble{
-
-    background: #528DFF;
-
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 29.5px;
-float: left;
-padding-left: 1.5%;
-padding-right: 1.5%;
-padding-top: 1%;
-padding-bottom: 0%;
-margin-top: 1%;
-margin-left: 1%;
+  .btnHid{
+  z-index: 1;
+  opacity: 0;
+  position: absolute;
+  bottom:14vh;
+  left:35vw;
 
 }
-
-.redbuble{
-
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    background: #C12323;
-
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 29.5px;
-    color:white;
-    float: left;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    padding-top: 1%;
-    padding-bottom: 0%;
-    margin-top: 1%;
-    margin-left: 1%;
-}
-
-
-.name{
-
-    width: 2em;
-    height: 2em;
-    padding-bottom: 10px;
-
-}
-.mobile-icon{
-    
-    padding: 1em;
-    width: 1em;
-    height: 1em;
-    border-radius: 15px;
-    margin-right: 0.5em;
-    margin-top:0.3em;
-    margin-bottom :1em;
-    
-    
-}
-
-.yellow{
-    background: #D8FF69;
-}
-
-.red{
-    background: #C12323;
-
-}
-
-.graybuble{
-
-background: #AFAFAF;
-/*opacity: 0.3;*/
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 29.5px;
-float: left;
-padding-left: 1.5%;
-padding-right: 1.5%;
-padding-top: 1%;
-padding-bottom: 0%;
-margin-top: 1%;
-margin-left: 1%;
-}
-
-
-.blueplane{
-    width: 35px;
-    height: 35px;
-
-}
-
-
-
-.grayplane{
-    margin-top: 1%;
-    width: 35px;
-    height: 35px;
-    float: left;
-
-}
-
-
-.text{
-    padding-left: 0.7em;
-    line-height: 2; 
-}
-
-
-input, select, textarea{
-    color: #ff0000;
-}
-
-
-
-.lineplane{
-
-    width: 2em;
-    height: 2em;
-    
-   
-}
-
-
-
-#input_img {
-    position:absolute;
-    bottom:2px;
-    right:5px;
-    
-}
-
-
-  /* chatbox düzeni */
-.chatbox{
-    
-    position: fixed;
-    width: 100%;
-    top:85%;
-  
-
-
-
-}
-
-.main-chat{
-    padding-bottom:10%;
-}
-
-
-@media (min-width: 410px) {
-
-   
-    .main-chat{
-        padding-bottom:10%;
-    }
-    
-    #input_img {
-        position:absolute;
-        bottom:30%;
-        right:0.5em!important;
-        
-        
-    }
-
-}
-
-/* Larger than mobile */
-@media (min-width: 300px) {
-
-    .bluebuble{
-
-        background: #528DFF;
-    
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 29.5px;
-    float: left;
-    padding: 3%;
-    padding-bottom: 1%;
-    margin-top: 1%;
-    margin-left: 1%;
-    min-height: 40px;
-    height: auto;
-    
-    }
-
-    .graybuble{ 
-
-        background: #AFAFAF;
-    
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 29.5px;
-    float: left;
-    padding: 3%;
-    padding-bottom: 1%;
-    margin-top: 1%;
-    margin-left: 1%;
-    min-height: 40px;
-    height: auto;
-    
-    }
-
-    .main-chat{
-
-        padding-bottom: 36%;
-    }
-   
-    .hidden300{
-
-        visibility: hidden
-    }
-    #input_img {
-        position:absolute;
-        bottom:30%;
-        right:1.5em;
-        
-    }
-
-    .logo{
-
-
-        width: 3em;
-        height: 3em;
-        float: left;    
-    }
-    h4{
-
-        padding-top: 0.3em;
-    }
-
-
-}
-
-/* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {
-    .bluebuble{
-
-        background: #528DFF;
-    
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 29.5px;
-    float: left;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    padding-top: 1%;
-    padding-bottom: 0%;
-    margin-top: 1%;
-    margin-left: 1%;
-    
-    }
-
-
-.graybuble{
-
-    background: #AFAFAF;
-    /*opacity: 0.3;*/
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 29.5px;
-    float: left;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    padding-top: 1%;
-    padding-bottom: 0%;
-    margin-top: 1%;
-    margin-left: 1%;
-    }
-    
-
-    .main-chat{
-        padding-bottom:10%;
-    }
-    #input_img {
-        position:absolute;
-        bottom:30%;
-        right:5px;
-        
-    }
-
-    .logo{
-
-
-        width: 5%;
-        height: 5%;
-        float: left;    
-    }
-    
-
-    
-}
-
-/* Larger than tablet */
-@media (min-width: 750px) {}
-
-/* Larger than desktop */
-@media (min-width: 1000px) {}
-
-/* Larger than Desktop HD */
-@media (min-width: 1200px) {}
