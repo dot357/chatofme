@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <link rel="stylesheet" href="css/master.css">
 
-
+<script src="js/crypto-js.min.js"> </script>
 <script
 src="https://code.jquery.com/jquery-3.4.1.min.js"
 integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -47,7 +47,7 @@ crossorigin="anonymous"></script>
 
 
 
-<div class="sticky top-0 bg-white w-full p-2  float-left      " >
+<div class="sticky top-0  bg-white w-full p-2  float-left      " >
   
 
        
@@ -282,6 +282,8 @@ crossorigin="anonymous"></script>
 
 <script>
 
+  
+
 $(function(){
 var roomname=document.URL;
 
@@ -456,8 +458,24 @@ $("#encodeBtn").click(function(f) {
 socket.on('new message', function(data){
   
   //console.log(data+ '<br /> room name : ' + roomname);
-  $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg   + '</span>'  +'</div>' ) ;
+  
+
+  
+  //Decode start
+  
+  if(data.pass === $('#encodeInput').val()){
+
+    let decip = CryptoJS.AES.decrypt(data.msg, data.pass).toString(CryptoJS.enc.Utf8);
+    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ decip   + '</span>'  +'</div>' ) ;
  
+  }
+  //Decode End
+  else
+    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg   + '</span>'  +'</div>' ) ;
+ 
+  
+
+  
 });
 });
 

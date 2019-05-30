@@ -12,6 +12,10 @@ var rmdir = require('rmdir');
 var path = require('path');
 
 
+//Crypto
+
+var CryptoJS = require("crypto-js");
+
 
 
 
@@ -200,13 +204,35 @@ io.sockets.on('connection', function(socket){
         
         //Cipher(data,'emre');
         let localroomName = trimmer(roomName);
-        
-        socket.broadcast.to(localroomName).emit('new message', {msg});  //mesajı client olmayan odadaki herkese yolluor
+       
+       
+       if(pass.length === 0){
+         //mesajı client olmayan odadaki herkese yolluor  
+        socket.broadcast.to(localroomName).emit('new message', {msg});  
 
+       }
+
+       else{
+
+        let cipherMsg = CryptoJS.AES.encrypt(msg, pass).toString();
         
+        console.log("Messahe is %s",cipherMsg);
+        /*
+        decip = CryptoJS.AES.decrypt(cipherMsg, 'pass').toString(CryptoJS.enc.Utf8);
+        console.log("Decyripted  version  %s",decip );
+        */
+         
+        msg=cipherMsg;
+        socket.broadcast.to(localroomName).emit('new message', {msg,pass});
+       }
+        
+
+      
         
         console.log("message:%s => roomName:%s ,,, PASS is => %s",msg, localroomName,pass);
         
+
+
         
       
         

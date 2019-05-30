@@ -16,6 +16,7 @@
     "express": "*",
     "mkdirp": "^0.5.1",
     "socket.io": "*",
-    "rmdir": "*"
+    "rmdir": "*",
+    "crypto-js": "*"
   }
 }
