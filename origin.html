@@ -121,21 +121,33 @@ crossorigin="anonymous"></script>
 
 
 <!-- Utility boxes and perks start-->
-<div id="utilities" class=" utility-box  invisible shadow-inner  bg-gray-300   w-full float-left">
-  <div>
+<div id="utilities" class=" utility-box  invisible shadow-lg bg-gray-200  rounded w-full float-left">
+  <div class="float-right w-full">
       <i id="utilities-close" class="p-2  float-right far fa-times-circle "></i>
 
   </div>
   
-<div class="p-3">
+<div class="p-2">
 
-  This area will give random gifs every time it opens
+  
+  <input id="encodeInput"  class="w-10/12 float-left rounded-full text-white appearance-none bg-gray-800 shadow-md border-none text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Encode/Decode" >
+   <span class="w-1/12"></span>
+   <i id="encodeBtn" class="w-1/12 fas fa-key float-right p-2 mr-4"></i>
+
+
   
 
 
-  <!-- this will be use camera app
-    <input type="file" accept="image/*" capture="camera" />
-  -->
+
+
+  <div id="searchresults" class="max-w-sm rounded overflow-hidden shadow-lg">
+
+
+  </div>
+  
+
+
+  
    
 </div>  
 </div>
@@ -160,12 +172,12 @@ crossorigin="anonymous"></script>
         <input id="message"  class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter a message" aria-label="Message">
      
 
-       <div class="w-1/12 mr-1">
+       <div class="w-1/12 mr-1 ">
                    
                   
-        <i id="utilities-open" class="pointer fas fa-hat-wizard text-gray-800  float-right   p-2 rounded-full"></i>
+        <i id="utilities-open" class="pointer fas fa-passport text-gray-800  float-right   p-2 rounded-full"></i>
         
-      </div>
+      </div> 
 
        <div class="w-1/12 mr-1">
                     
@@ -294,7 +306,7 @@ tempUrl = tempUrl.replace('//','');
 
 
 
-var  socket =  io.connect(); //burda girişte bağlamayı halletiğin an tammadır 
+var  socket =  io.connect(); 
 socket.emit('join',roomname);
 var  $messageForm = $('#messageForm');
 var  $message = $('#message');
@@ -324,7 +336,7 @@ $("#sender").click(function(f) {
   let msg = HtmlEncode($message.val());
   
   if($message.val() != '' && $message.val() != ' ' )  {
-    socket.emit('send message', { msg:msg,roomName:roomname });
+    socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname, pass:$('#encodeInput').val() });
     $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
      $message.val('');
 
@@ -344,7 +356,7 @@ $messageForm.submit(function(e){
   //serverdaki send message fonksiyonuna gidiyor
   //socket.emit('send message', HtmlEncode($message.val()),roomname );
 
-  socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname });
+  socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname, pass:$('#encodeInput').val() });
   $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
   $message.val('');
 }
@@ -357,6 +369,89 @@ else
 
 
 
+
+
+
+/*encode/decode start */ 
+
+// ids= encodeInput , encodeBtn
+
+
+
+
+
+var Encount = 0;
+
+$("#encodeBtn").click(function(f) {
+  f.preventDefault();
+
+
+  ++Encount;
+
+  if(Encount%2 === 0){  // remove pass
+    //passi local storageden silicem
+    
+    Encount = 0;
+    $('#encodeInput').val('');
+    $('#encodeInput').removeAttr('disabled','disabled');
+    $('#encodeBtn').removeClass("fa-unlock-alt");
+    $('#encodeBtn').addClass("fa fa-key");  
+   
+
+
+
+
+
+
+
+
+
+
+  }
+
+  else { //first press set pass
+    //burda passi local storage geçireceğim böylelikle her seferinde girmesine gerek kalmıyıcak
+    $('#encodeBtn').removeClass("fa fa-key");  
+    $('#encodeBtn').addClass("fa-unlock-alt");
+
+            let pass = $('#encodeInput').val();
+
+       
+        if(pass != '' && pass != ' ' )  {
+        
+
+
+          //$('#encodeInput').val('');
+          $('#encodeInput').attr('disabled','disabled');
+          //pass alındı bunu localstorage atabilirim böylelikle her seferinde girmek zorunda kalmaz
+          //console.log(pass);
+          
+          
+         
+          
+
+
+        }
+        else  
+            console.log("You cant send an empty message");
+
+
+          }
+   
+    
+    
+
+ 
+});
+
+
+
+
+/*encode/decode end */
+
+
+
+
  
 socket.on('new message', function(data){
   
@@ -365,13 +460,33 @@ socket.on('new message', function(data){
  
 });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 
 
 </body>
-</html>
-<script src="/js/gimmick.js"></script>
+</html> 
+<script src="/js/fiddle.js"></script>
 <script src="/js/animations.js"></script>
 
 

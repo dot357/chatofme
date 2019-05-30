@@ -100,8 +100,10 @@ function trimmer(x){
 
 
 
-function Cipher(data, encodepassword) {
+function Cipher(msg, pass) {
 
+    let localPass = pass;
+    let encodedMsg = msg;
     
     //burda şifreleme olucak
 
@@ -111,7 +113,7 @@ function Cipher(data, encodepassword) {
 
 
 
-    return console.log(data,encodepassword);
+    return console.log(msg,encodepassword);
 }
 
 var path = require('path'); // bu pathi tanımlıyor
@@ -189,12 +191,12 @@ io.sockets.on('connection', function(socket){
 
     });
 
-
+    
  
     //Send messages
 
     //Probably i will localy encode it here before i send it and when i recive i will decode it with given paramethers
-    socket.on('send message', function({ msg, roomName }){
+    socket.on('send message', function({ msg, roomName, pass }){
         
         //Cipher(data,'emre');
         let localroomName = trimmer(roomName);
@@ -203,13 +205,19 @@ io.sockets.on('connection', function(socket){
 
         
         
-        console.log("message:%s => roomName:%s",msg, localroomName);
-    
+        console.log("message:%s => roomName:%s ,,, PASS is => %s",msg, localroomName,pass);
+        
+        
       
         
         //io.sockets.emit('send gif', {gif: data});
         
     });
+
+
+
+
+  
 
 
 
