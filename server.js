@@ -64,39 +64,35 @@ rmdir(dirPath , function (err, dirs, files) {
 
 
 function trimmer(x){
-    //web server alınca burayı fixle urlyi düzgün silemiyor
+    
     
     tempUrl = x;
-    tempUrl = tempUrl.replace('http','');
+    
     tempUrl = tempUrl.replace('https','');
     tempUrl = tempUrl.replace('//','');
 
 
 
     
-    //console.log("http removed");
+    
     
     tempUrl = tempUrl.replace(':','');
 
-    //console.log(": removed");
+    
     tempUrl = tempUrl.replace('/','');
 
-    //console.log("/ removed");
+    
 
     tempUrl = tempUrl.replace('app.liberi.world','');
 
-    //console.log("local removed");
-
+    
 
     tempUrl = tempUrl.replace('165.227.149.7:3000','');
     
-    //console.log("liberi removed");
-
+    
     tempUrl = tempUrl.replace('//','');
 
-    //console.log("// removed");
-   
-  //debug  console.log("temp  => ",tempUrl);
+    
 
      return tempUrl;
    

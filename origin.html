@@ -37,7 +37,7 @@ crossorigin="anonymous"></script>
 </head>
 
 <html>
-<body>
+<body >
     
     
 
@@ -47,7 +47,7 @@ crossorigin="anonymous"></script>
 
 
 
-<div class="sticky top-0  bg-white w-full p-2  float-left      " >
+<div style="z-index: 1;" class="fixed  bg-gray-100 w-full p-2  float-left      "  >
   
 
        
@@ -101,7 +101,7 @@ crossorigin="anonymous"></script>
 
 
 
-<div id="chat" >
+<div id="chat"  style="padding-top:7vh;  ">
 
 
 
@@ -180,23 +180,22 @@ crossorigin="anonymous"></script>
       </div> 
 
        <div class="w-1/12 mr-1">
-                    
-        <div id="cambox" class="cam-box   " >
+       <!-- COLOR SWATCHES WORK IN PROGRESS -->
+       <!-- <div id="cambox" class="cam-box  mr-5 rounded-full bg-gray-300 shadow-md p-1" >
+          
+            <i id="orange" class="animated pulse infinite shadow-md   bg-orange-400   pointer  text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="purple" class="animated pulse infinite shadow-md  bg-purple-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="green" class="animated pulse infinite shadow-md  bg-green-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="blue" class="animated pulse infinite shadow-md  bg-blue-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="yellow" class="animated pulse infinite shadow-md  bg-yellow-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
             
-            <i id="cambox-clip" class="animated pulse infinite shadow-md   bg-gray-400   pointer fas fa-camera text-gray-900  float-right   p-2 rounded-full"></i>
-            <i  id="cambox-cam" class="animated pulse infinite shadow-md  bg-gray-400  mr-2 pointer fas fa-paperclip text-gray-900  float-right   p-2 rounded-full"></i>
             
-            
-            <!--
-              <input id="cambox-cam-open" class="invisible" type="file" accept="image/*" capture="camera" />
-
-            -->
-            <input id="cambox-cam-open" class="invisible" type="file" accept="image/*" capture="camera" />
-       </div>
+    
+       </div>-->
         
 
-        <i id="cambox-open" class="pointer fas fa-camera text-gray-800  float-right   p-2 rounded-full"></i>
-        
+      <!--  <i id="cambox-open" class="pointer fas fa-swatchbook text-gray-800  float-right   p-2 rounded-full"></i>
+        -->
       </div>
       <div  class="w-1/12 mr-1">
 
@@ -204,7 +203,7 @@ crossorigin="anonymous"></script>
 
         <i id="swipezone" class="chatClose pointer float-right fas fa-arrow-left text-white  bg-gray-800 p-2 rounded-full"></i>
         
-
+        
          
         <i id="sender" class="pointer float-right fas fa-paper-plane text-white  bg-green-500 p-2 rounded-full"></i>
         
@@ -349,6 +348,11 @@ $("#sender").click(function(f) {
 });
 
 
+
+
+
+
+
  
 $messageForm.submit(function(e){
   e.preventDefault();
@@ -357,6 +361,10 @@ $messageForm.submit(function(e){
     //buraya xss tagları removelatacağım
   //serverdaki send message fonksiyonuna gidiyor
   //socket.emit('send message', HtmlEncode($message.val()),roomname );
+
+  
+
+
 
   socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname, pass:$('#encodeInput').val() });
   $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
@@ -461,18 +469,31 @@ socket.on('new message', function(data){
   
 
   
-  //Decode start
+  //Decode start  
+
+ 
   
-  if(data.pass === $('#encodeInput').val()){
+  if(data.pass === $('#encodeInput').val() ){
 
     let decip = CryptoJS.AES.decrypt(data.msg, data.pass).toString(CryptoJS.enc.Utf8);
-    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ decip   + '</span>'  +'</div>' ) ;
+    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-lock-open text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ decip   + '</span>'  +'</div>' ) ;
  
   }
   //Decode End
-  else
-    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg   + '</span>'  +'</div>' ) ;
+  else{
+
+    if(data.msg.slice(0,9) === "U2FsdGVkX"){
+
+      $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-lock text-blue-400"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg.slice(0, 13)   + '</span>'  +'</div>' ) ;
  
+    
+    }
+    else
+    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-400"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg   + '</span>'  +'</div>' ) ;
+ 
+
+  }
+    
   
 
   
