@@ -324,7 +324,7 @@ function HtmlEncode(s)
 
 
 
-$('#roomName').append(HtmlEncode( '/' + roomTrimmer(roomname)));
+$('#roomName').append(decodeURI(HtmlEncode( '/' + roomTrimmer(roomname))));
 
 
 

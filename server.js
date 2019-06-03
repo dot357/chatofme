@@ -93,7 +93,7 @@ function trimmer(x){
     tempUrl = tempUrl.replace('//','');
 
     
-
+    tempUrl = decodeURI(tempUrl);  // when final realse this can be deleted it decodes the uri
      return tempUrl;
    
 }
@@ -166,7 +166,7 @@ io.sockets.on('connection', function(socket){
        
         //console.log(this.rooms.length);
 
-        console.log(data);
+        console.log("Room name without the decode => %s",data);
 
      
 
@@ -247,6 +247,45 @@ io.sockets.on('connection', function(socket){
         //bu aranan odaya gitmek için
 
     socket.on('search', function (data) {
+
+
+ /* locally used roomName trim fnc start*/
+
+
+
+
+
+
+
+
+
+
+
+ function htmlRoom(x){
+    
+    
+    let tempRoom = x;
+    
+    tempRoom = tempRoom.replace(/ /g,'-'); //removed whitespace
+    //tempRoom = tempRoom.normalize('NFC');
+    
+
+     return tempRoom;
+   
+}
+
+/* locally used roomName trim fnc end*/
+
+
+data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
+
+
+
+
+
+
+
+
         //io.sockets.emit('searchs', {search:data});
 
         //Landingconnections = []; 
@@ -269,29 +308,33 @@ io.sockets.on('connection', function(socket){
         }
         
         else{
+
+           
+
             //check auth for the site
             console.log('No file');
 
             //auth will be here this is test
 
             var path = __dirname + "/rooms";
-            var tforindex = fs.readFileSync('origin.html');
+            var tforindex = fs.readFileSync('origin.html','utf8');
             
             console.log('%s room created',data);
 
               
             //tripspaces will be here
             mkdirp(path, function (err) {
-                const filename = data+'.html';
-                fs.writeFileSync(path + "/" + filename, tforindex) 
+                const filename = data+'.html';  
+                fs.writeFileSync(path + "/" + filename, tforindex, 'utf8') 
               })
             
             
+            console.log(data);
             
             
             
             // app sayfasını sunmak için ROOMSTAN ALICAZ
-                app.get('/'+data, function(req, res){
+                app.get('/'+encodeURIComponent(data), function(req, res){
 
 
                 //before redirect it here get the post method and check the page exist or not if so redirect else create the server

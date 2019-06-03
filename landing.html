@@ -88,6 +88,23 @@ crossorigin="anonymous"></script>
 
 <script>
 
+  /* locally used roomName trim fnc start*/
+
+  function htmlRoom(x){
+    
+    
+    let tempRoom = x;
+    
+    tempRoom = tempRoom.replace(/ /g,'-'); //removed whitespace
+    
+    
+
+     return tempRoom;
+   
+}
+
+/* locally used roomName trim fnc end*/
+
  
   function HtmlEncode(s)
  {
@@ -112,13 +129,35 @@ crossorigin="anonymous"></script>
    if($search.val() != '' && $search.val() != ' ' )  {  //burda bütünboşlukları trimletebilirim
  
      
+
+
+
+         /* locally used roomName trim fnc start*/
+
+
+              function htmlRoom(x){
+          
+          
+                    let tempRoom = x;
+                    
+                    tempRoom = tempRoom.replace(/ /g,'-');
+                    
+                    
+
+                    return tempRoom;
+                  
+                          }
+
+/* locally used roomName trim fnc end*/
+
+    
  
      //buraya xss tagları removelatacağım
  
    //serverdaki send message fonksiyonuna gidiyor
-   socket.emit('search', HtmlEncode($search.val()) );
+   socket.emit('search', HtmlEncode($search.val()));
    //set link value
-   var path = '/'+$search.val();
+   var path = '/'+htmlRoom($search.val()); //boşlukları removladı
    link.setAttribute('href',path);
    //visible
 	$('#btnHidden').animate({opacity: "1"});   
@@ -142,6 +181,14 @@ crossorigin="anonymous"></script>
   f.preventDefault();
   
 
+
+
+
+
+
+
+
+
   let room=HtmlEncode($search.val());
 
   if($search.val() != '' && $search.val() != ' ' )  { 
@@ -149,7 +196,7 @@ crossorigin="anonymous"></script>
 
     socket.emit('search', room );
     
-  var path = '/'+room;
+  var path = '/'+htmlRoom(room);
   link.setAttribute('href',path);
   //document.getElementById("btnHidden").style.visibility = "visible";
 
