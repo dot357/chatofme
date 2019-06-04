@@ -129,7 +129,7 @@ console.log('Server Runing and Functioning...');
 
 
 
-//Add 404 support
+
 
 
 
@@ -336,10 +336,10 @@ data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
             // app sayfasını sunmak için ROOMSTAN ALICAZ
                 app.get('/'+encodeURIComponent(data), function(req, res){
 
-
+                   // res.sendStatus(200);
                 //before redirect it here get the post method and check the page exist or not if so redirect else create the server
                 res.sendFile(__dirname + '/rooms/'+data+'.html');
-               
+                
                 
                 });
 
@@ -358,3 +358,4 @@ data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
 
 
 //Add 404 page please
+

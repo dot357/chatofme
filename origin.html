@@ -8,8 +8,13 @@
   <meta name="author" content="Emre Can Eskimez">
 
   <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  –––––––––––––––––––––––––––––––––––––––––––––––––– 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -307,7 +312,8 @@ tempUrl = tempUrl.replace('//','');
 
 
 
-var  socket =  io.connect(); 
+//var  socket =  io.connect(); 
+var socket = io.connect('https://app.liberi.world', {secure: true});
 socket.emit('join',roomname);
 var  $messageForm = $('#messageForm');
 var  $message = $('#message');

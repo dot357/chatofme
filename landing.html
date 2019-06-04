@@ -9,7 +9,13 @@
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+     
+    <!-- 
+      Old meta
+      <meta name="viewport" content="width=device-width, initial-scale=1 ">-->
+   
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -113,8 +119,10 @@ crossorigin="anonymous"></script>
    s = el.innerHTML;
    return s;
  }
- var  socket =  io.connect();
+ var socket = io.connect('https://app.liberi.world', {secure: true});
  //var  socket =  io.connect('165.227.139.7:3000');  BU KOMUTLA SERVERA BAĞLAYABİLİRİM CLIENTI CORDOVAYA TAŞIYABİLRİM 
+
+ // var  socket =  io.connect();  
  var $searchbox = $('#searchbox');
  var  $search = $('#search');
  var link = document.getElementById('link');
