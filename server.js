@@ -57,7 +57,10 @@ rmdir(dirPath , function (err, dirs, files) {
 
 
 
-
+function sanitize(x) {
+    x.replace(/[.*+?^/${}:<>()|[\]\\;]/g,'');
+    return x;
+}
 
 
 
@@ -67,33 +70,12 @@ function trimmer(x){
     
     
     tempUrl = x;
+    tempUrl = tempUrl.replace(/[.*+?^/${}:<>()|[\]\\;]/g,'');
     
-    tempUrl = tempUrl.replace('https','');
-    tempUrl = tempUrl.replace('//','');
-
-
-
-    
-    
-    
-    tempUrl = tempUrl.replace(':','');
+    tempUrl = decodeURI(tempUrl); 
+     // when final realse this can be deleted it decodes the uri
 
     
-    tempUrl = tempUrl.replace('/','');
-
-    
-
-    tempUrl = tempUrl.replace('app.liberi.world','');
-
-    
-
-    tempUrl = tempUrl.replace('165.227.149.7:3000','');
-    
-    
-    tempUrl = tempUrl.replace('//','');
-
-    
-    tempUrl = decodeURI(tempUrl);  // when final realse this can be deleted it decodes the uri
      return tempUrl;
    
 }
@@ -166,7 +148,7 @@ io.sockets.on('connection', function(socket){
        
         //console.log(this.rooms.length);
 
-        console.log("Room name without the decode => %s",data);
+        console.log("Room name without the decode => %s",data);  //debug release when online
 
      
 
@@ -175,8 +157,7 @@ io.sockets.on('connection', function(socket){
         console.log('User Joined the room => '+ localTemp);
         
         socket.join(localTemp);
-        
-        
+       
 
         });
     
@@ -254,7 +235,7 @@ io.sockets.on('connection', function(socket){
 
 
 
-
+       
 
 
 
@@ -270,14 +251,14 @@ io.sockets.on('connection', function(socket){
     //tempRoom = tempRoom.normalize('NFC');
     
 
-     return tempRoom;
+     return sanitize(tempRoom);
    
 }
 
 /* locally used roomName trim fnc end*/
 
 
-data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
+data = htmlRoom(trimmer(data));  //replaced  SPACE => '-'  UTF-8 chars encoded
 
 
 
@@ -321,7 +302,8 @@ data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
             
             console.log('%s room created',data);
 
-              
+           
+            
             //tripspaces will be here
             mkdirp(path, function (err) {
                 const filename = data+'.html';  
@@ -348,7 +330,8 @@ data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
         }
 
 
-       //Birazdan kullanılmayan serverlar silinicek onu yapıcam
+       //Room name sending to the client
+
       
       
         
@@ -357,5 +340,41 @@ data = htmlRoom(data);  //replaced  SPACE => '-'  UTF-8 chars encoded
 });
 
 
-//Add 404 page please
+//brief start
 
+
+app.get('/how', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/how.html');
+
+});
+
+app.get('/donate', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/donate.html');
+
+});
+
+app.get('/popular', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/popular.html');
+
+});
+
+app.get('/what', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/what.html');
+
+});
+
+app.get('/why', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/why.html');
+
+});
+//brief end

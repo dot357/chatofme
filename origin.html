@@ -1,48 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
-  <meta charset="utf-8">
-  <title>LIBERIWORLDapp</title>
-  <meta name="description" content="">
-  <meta name="author" content="Emre Can Eskimez">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
--->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-    
-
-  <!--Animation.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-<link rel="stylesheet" href="css/master.css">
-
-<script src="js/crypto-js.min.js"> </script>
-<script
-src="https://code.jquery.com/jquery-3.4.1.min.js"
-integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-crossorigin="anonymous"></script>
-
-<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-
-<script src="/socket.io/socket.io.js"></script>
-
-
-
-</head>
-
-<html>
-<body >
+<body id="ajaxLoadOrigin">
     
     
 
@@ -197,6 +156,7 @@ crossorigin="anonymous"></script>
             
     
        </div>-->
+      
         
 
       <!--  <i id="cambox-open" class="pointer fas fa-swatchbook text-gray-800  float-right   p-2 rounded-full"></i>
@@ -206,8 +166,8 @@ crossorigin="anonymous"></script>
 
         
 
-        <i id="swipezone" class="chatClose pointer float-right fas fa-arrow-left text-white  bg-gray-800 p-2 rounded-full"></i>
-        
+        <!--<i id="swipezone" class="chatClose pointer float-right fas fa-arrow-left text-white  bg-gray-800 p-2 rounded-full"></i>
+        -->
         
          
         <i id="sender" class="pointer float-right fas fa-paper-plane text-white  bg-green-500 p-2 rounded-full"></i>
@@ -289,7 +249,10 @@ crossorigin="anonymous"></script>
   
 
 $(function(){
-var roomname=document.URL;
+var roomname=$('#RNname').html();  //roomnameden de sanitize yapıcaz
+console.log(roomname);
+
+
 
 
 
@@ -312,13 +275,17 @@ tempUrl = tempUrl.replace('//','');
 
 
 
-//var  socket =  io.connect(); 
-var socket = io.connect('https://app.liberi.world', {secure: true});
+var  socket =  io.connect(); 
+//var socket = io.connect('https://app.liberi.world', {secure: true});
 socket.emit('join',roomname);
 var  $messageForm = $('#messageForm');
 var  $message = $('#message');
 var  $chat = $('#chat');
 var  $output = $('#output');
+
+
+
+
 
 function HtmlEncode(s)
 {
@@ -330,9 +297,9 @@ function HtmlEncode(s)
 
 
 
-$('#roomName').append(decodeURI(HtmlEncode( '/' + roomTrimmer(roomname))));
+$('#roomName').append(decodeURI(HtmlEncode( '/' + roomTrimmer(roomname))));  
 
-
+//$('#roomName').append(roomname);
 
 // msg send tools start
 
@@ -531,7 +498,6 @@ socket.on('new message', function(data){
 
 </body>
 </html> 
-<script src="/js/fiddle.js"></script>
 <script src="/js/animations.js"></script>
 
 

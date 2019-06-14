@@ -51,3 +51,43 @@
   left:35vw;
 
 }
+
+
+
+.logo-color{
+
+  background: #E2E8F0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #fff, #E2E8F0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #fff, #E2E8F0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
+#chat{
+
+  height:auto;
+  overflow:auto;
+  padding-top:7vh;
+  padding-bottom:9vh;
+}
+
+.landing-content{
+
+  height:auto;
+  overflow:auto;
+  padding-bottom:10vh;
+}
+
+
+.floating{
+
+
+position: absolute;
+left:0vh;
+top:0vh;
+width:3vh;
+z-index: -1;
+
+}
+
+

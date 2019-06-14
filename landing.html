@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 <link rel="stylesheet" href="css/master.css">
 
-
+<script src="js/crypto-js.min.js"> </script>
 <script
 src="https://code.jquery.com/jquery-3.4.1.min.js"
 integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -40,26 +40,53 @@ crossorigin="anonymous"></script>
 
 
 
+
 </head>
 
 
 
 
-<body>
+<body >
+
+
+  
     
-
+<div id="ajaxLoad">
   
-  
+  <div  class="content-center p-5 ">
+
+    <!--Logo-->
+   
+    <img  style="width: 13vh;" class=" shadow-lg mx-auto rounded-lg logo-color p-2" src="/images/spy.png" alt="">
+     
+      <center>
+      <nav class="pt-3 content-center" >
+        <ul id="nav">
+          <button id="btnHow" class="m-1 shadow-md rounded bg-red-300 pl-2 pr-2 p-1">HOW TO USE </button>
+          <button id="btnWhat" class="m-1 shadow-md rounded bg-blue-300 pl-2 pr-2 p-1">WHAT IS THIS?</button>
+          <button id="btnPopular" class="m-1 shadow-md rounded bg-orange-300 pl-2 pr-2 p-1">POPULAR</button>
+          <button id="btnWhy" class="m-1 shadow-md rounded bg-purple-300 pl-2 pr-2 p-1">WHY ADS?</button>
+          <button id="btnDonate" class="m-1 shadow-md rounded bg-green-300 pl-2 pr-2 p-1">SUPPORT <i class="fas fa-hand-holding-usd"></i></button>
+          
+      </nav>
+    </center>
+
+   <center id="spot" class="pt-3"></center>
+      <div class="pt-2 landing-content"> <!--Content-->
+
+      <div id="contentLoad">
 
 
-  <div class="mx-auto">
-
-    <button id="btnHidden"  class="btnHid bg-gray-600 text-white p-2 rounded-full animated pulse infinite pointer"><a id="link" href="http://localhost:3000/emre">Enter the room</a> </button>
-
+      </div>
+     
+      </div>
   </div>
 
 
-<footer class="  bg-gray-300 w-full float-left  animated  slideInUp " id="form">
+  
+
+
+<footer class=" bg-gray-300 w-full float-left  animated  slideInUp  " id="form">
 
 
  
@@ -69,12 +96,12 @@ crossorigin="anonymous"></script>
       
       <div class="p-3 flex items-center shadow py-2">
            
-          <img class="pointer shadow-md" id="hide" src="/images/spy.png" style="width: 2.5em;" alt="">
+          
                      
                     
         <input id="search" class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Room Name" aria-label="Full name">
         <button class=" mr-5 float-right  bg-transparent text-black  ">
-              <i id="searchButton" class=" fab fa-searchengin fa-2x  "></i>
+              <i id="searchButton" class=" fas fa-search   "></i>
             </button>
        
       </div>
@@ -119,10 +146,10 @@ crossorigin="anonymous"></script>
    s = el.innerHTML;
    return s;
  }
- var socket = io.connect('https://app.liberi.world', {secure: true});
+ //var socket = io.connect('https://app.liberi.world', {secure: true});
  //var  socket =  io.connect('165.227.139.7:3000');  BU KOMUTLA SERVERA BAĞLAYABİLİRİM CLIENTI CORDOVAYA TAŞIYABİLRİM 
 
- // var  socket =  io.connect();  
+ var  socket =  io.connect();  
  var $searchbox = $('#searchbox');
  var  $search = $('#search');
  var link = document.getElementById('link');
@@ -164,13 +191,17 @@ crossorigin="anonymous"></script>
  
    //serverdaki send message fonksiyonuna gidiyor
    socket.emit('search', HtmlEncode($search.val()));
-   //set link value
-   var path = '/'+htmlRoom($search.val()); //boşlukları removladı
-   link.setAttribute('href',path);
-   //visible
-	$('#btnHidden').animate({opacity: "1"});   
+   var path = '/'+htmlRoom(HtmlEncode($search.val())); //boşlukları removladı
+   path = path.replace(/[.*+?^/${}:<>()|[\]\\;]/g,'');
+   let ajaxRoomName = htmlRoom(HtmlEncode($search.val()))
+ 
    
-   $search.val('');
+   $('#RNname').append(path);  //BURAADAAA
+   
+    $("#ajaxLoad").load(path);
+   
+
+  
  
  } 
  
@@ -205,10 +236,13 @@ crossorigin="anonymous"></script>
     socket.emit('search', room );
     
   var path = '/'+htmlRoom(room);
-  link.setAttribute('href',path);
-  //document.getElementById("btnHidden").style.visibility = "visible";
+  path = path.replace(/[.*+?^/${}:<>()|[\]\\;]/g,'');
+  let ajaxRoomName = htmlRoom(HtmlEncode($search.val()))
+ 
+  $('#RNname').append(path);  //BURAADAAA 2
+    $("#ajaxLoad").load(path);
 
-  $('#btnHidden').animate({opacity: "1"});
+
   }
 
   else
@@ -231,10 +265,75 @@ crossorigin="anonymous"></script>
 
 
 
+</div>
 
+<div id="RNname" class="invisible"></div> <!--roomname-->
 
 </body>
 </html>
 
-<script src="js/animations.js"></script>
+<script>
+let clicked =0;
+$('#btnHow').click(function () {
+  $('#contentLoad').empty();
+  $("#nav").append($('#'+clicked).show(100));
+  $('#btnHow').hide(100);
+  $('#spot').empty();
+  $('#spot').append( $('#btnHow').show(300));
+  clicked="btnHow";
+  $('#contentLoad').load('how');
+  
+});
+
+
+
+
+
+$('#btnWhy').click(function () {
+  $('#contentLoad').empty();
+  $("#nav").append($('#'+clicked).show(100));
+  $('#btnWhy').hide(100); 
+  $('#spot').empty();
+  $('#spot').append( $('#btnWhy').show(300));
+  clicked="btnWhy";
+  $('#contentLoad').load('why');
+
+});
+
+
+$('#btnDonate').click(function () {
+  $('#contentLoad').empty();
+  $("#nav").append($('#'+clicked).show(100));
+  $('#btnDonate').hide(100); 
+  $('#spot').empty();
+  $('#spot').append( $('#btnDonate').show(300));
+  clicked="btnDonate";
+  $('#contentLoad').load('donate');
+
+});
+
+$('#btnPopular').click(function () {
+  $('#contentLoad').empty();
+  $("#nav").append($('#'+clicked).show(100));
+  $('#btnPopular').hide(100); 
+  $('#spot').empty();
+  $('#spot').append( $('#btnPopular').show(300));
+  clicked="btnPopular";
+  $('#contentLoad').load('popular');
+
+});
+
+
+$('#btnWhat').click(function () {
+  $('#contentLoad').empty();
+  $("#nav").prepend($('#'+clicked).show(100));
+  $('#btnWhat').hide(100); 
+  $('#spot').empty();
+  $('#spot').append( $('#btnWhat').show(300));
+  clicked="btnWhat";
+  $('#contentLoad').load('what');
+
+});
+</script>
+
 
