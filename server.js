@@ -16,11 +16,6 @@ var path = require('path');
 
 var CryptoJS = require("crypto-js");
 
-//THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
-/*server.listen(3000, '192.168.1.9' ,function () {  //THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
-    
-});*/
-//THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
 
 
 //this will be output rooms 
@@ -126,6 +121,54 @@ app.get('/', function(req, res){
     
 
 });
+
+
+//brief start
+
+
+app.get('/how', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/how.html');
+
+});
+
+app.get('/donate', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/donate.html');
+
+});
+
+app.get('/popular', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/popular.html');
+
+});
+
+app.get('/what', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/what.html');
+
+});
+
+app.get('/why', function(req, res){
+
+
+    res.sendFile(__dirname + '/brief/why.html');
+
+});
+//brief end
+
+
+
+
+
+
+
+
 
 // app sayfasını sunmak için
 /*
@@ -342,41 +385,3 @@ data = htmlRoom(trimmer(data));  //replaced  SPACE => '-'  UTF-8 chars encoded
 });
 
 
-//brief start
-
-
-app.get('/how', function(req, res){
-
-
-    res.sendFile(__dirname + '/brief/how.html');
-
-});
-
-app.get('/donate', function(req, res){
-
-
-    res.sendFile(__dirname + '/brief/donate.html');
-
-});
-
-app.get('/popular', function(req, res){
-
-
-    res.sendFile(__dirname + '/brief/popular.html');
-
-});
-
-app.get('/what', function(req, res){
-
-
-    res.sendFile(__dirname + '/brief/what.html');
-
-});
-
-app.get('/why', function(req, res){
-
-
-    res.sendFile(__dirname + '/brief/why.html');
-
-});
-//brief end
