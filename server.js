@@ -16,11 +16,11 @@ var path = require('path');
 
 var CryptoJS = require("crypto-js");
 
-
-server.listen(3000, '192.168.1.9' ,function () {  //THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
+//THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
+/*server.listen(3000, '192.168.1.9' ,function () {  //THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
     
-});
-
+});*/
+//THIS IS DEBUG REMOVE BEFORE STARTING ON THE SERVER
 
 
 //this will be output rooms 
