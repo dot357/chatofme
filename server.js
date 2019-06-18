@@ -1,7 +1,7 @@
 var express = require('express'); //express js i çağırdık 
 var app = express();  
 var server = require('http').createServer(app);   
-
+var secure = require('ssl-express-www');  //ssl use
 var io = require('socket.io').listen(server);
 var fs = require('fs');
 
@@ -17,7 +17,7 @@ var path = require('path');
 
 var CryptoJS = require("crypto-js");
 
-
+app.use(secure);
 
 //this will be output rooms 
 console.log("Server Starting...");
