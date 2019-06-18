@@ -17,7 +17,7 @@
     "mkdirp": "^0.5.1",
     "socket.io": "*",
     "rmdir": "*",
-    "crypto-js": "*"
-    
+    "crypto-js": "*",
+    "ssl-express-www": "*"
   }
 }
