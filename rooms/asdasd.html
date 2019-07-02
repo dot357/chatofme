@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body id="ajaxLoadOrigin">
+    
+    
+
+
+ 
+<!-- new nav bar-->
+
+
+
+<div style="z-index: 1;" class="fixed  bg-gray-100 w-full p-2  float-left      "  >
+  
+
+       
+                   
+  <img id="close" class="pointer shadow-md ml-1 float-left" src="/images/spy.png" style="width: 2.5em;" alt="">
+    
+
+  <span id="roomName" class=" p-2 position  text-gray-500 leading-loose"> </span>
+     <!-- 
+      More funcs can be added at top of the second menu   
+       
+
+      
+      <i class="fas fa-share-alt float-right p-2"></i>
+    
+      -->
+     <a href="/"> <i id="darkpalette" class="fas fa-search float-right p-2"></i></a>
+      
+</div>
+
+
+
+
+
+
+
+<!-- new nav bar end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="chat"  style="padding-top:7vh;  ">
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Utility boxes and perks start-->
+<div id="utilities" class=" utility-box  invisible shadow-lg bg-gray-200  rounded w-full float-left">
+  <div class="float-right w-full">
+      <i id="utilities-close" class="p-2  float-right far fa-times-circle "></i>
+
+  </div>
+  
+<div class="p-2">
+
+  
+  <input id="encodeInput"  class="w-10/12 float-left rounded-full text-white appearance-none bg-gray-800 shadow-md border-none text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Encode/Decode" >
+   <span class="w-1/12"></span>
+   <i id="encodeBtn" class="w-1/12 fas fa-key float-right p-2 mr-4"></i>
+
+
+  
+
+
+
+
+  <div id="searchresults" class="max-w-sm rounded overflow-hidden shadow-lg">
+
+
+  </div>
+  
+
+
+  
+   
+</div>  
+</div>
+<!-- Utility boxes and perks end-->
+
+
+
+ 
+   
+
+   <!--footer-->
+   <footer id="chatGimmick" class=" bg-gray-200  w-full float-left  rounded-full " >
+
+      
+     <!-- msg start-->
+     <form   id="messageForm">
+    
+    
+    
+      <div  class="p-3 flex items-center ">
+         
+        <input id="message"  class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter a message" aria-label="Message">
+     
+
+       <div class="w-1/12 mr-1 ">
+                   
+                  
+        <i id="utilities-open" class="pointer fas fa-passport text-gray-800  float-right   p-2 rounded-full"></i>
+        
+      </div> 
+
+       <div class="w-1/12 mr-1">
+       <!-- COLOR SWATCHES WORK IN PROGRESS -->
+       <!-- <div id="cambox" class="cam-box  mr-5 rounded-full bg-gray-300 shadow-md p-1" >
+          
+            <i id="orange" class="animated pulse infinite shadow-md   bg-orange-400   pointer  text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="purple" class="animated pulse infinite shadow-md  bg-purple-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="green" class="animated pulse infinite shadow-md  bg-green-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="blue" class="animated pulse infinite shadow-md  bg-blue-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            <i  id="yellow" class="animated pulse infinite shadow-md  bg-yellow-400  mr-4 pointer   text-gray-900  float-right   p-4 rounded-full"></i>
+            
+            
+    
+       </div>-->
+      
+        
+
+      <!--  <i id="cambox-open" class="pointer fas fa-swatchbook text-gray-800  float-right   p-2 rounded-full"></i>
+        -->
+      </div>
+      <div  class="w-1/12 mr-1">
+
+        
+
+        <!--<i id="swipezone" class="chatClose pointer float-right fas fa-arrow-left text-white  bg-gray-800 p-2 rounded-full"></i>
+        -->
+        
+         
+        <i id="sender" class="pointer float-right fas fa-paper-plane text-white  bg-green-500 p-2 rounded-full"></i>
+        
+
+        
+        
+
+       
+      </div>
+
+
+      
+     
+        
+    
+
+
+
+       <!--Utilities buttons end-->
+
+
+
+       
+      </div>
+      
+      
+    </form>
+    </footer>
+
+
+
+
+
+<!-- footer two start-->
+
+
+
+
+<footer id="chatclose" class=" invisible ml-3   float-left  rounded-full " >
+        
+
+          
+            
+
+  <i class=" animated pulse infinite float-left fas fa-paper-plane text-white  bg-green-500 p-2 rounded-full"></i>
+          
+
+
+ 
+  </footer>
+
+
+
+<!-- fotter two end-->
+
+
+
+
+
+
+
+
+   <!--/footer-->
+
+
+
+
+
+  
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+
+
+<script>
+
+  
+
+$(function(){
+var roomname=$('#RNname').html();  //roomnameden de sanitize yapıcaz
+console.log(roomname);
+
+
+
+
+
+function roomTrimmer(x){
+
+tempUrl = x;
+tempUrl = tempUrl.replace('https','');
+tempUrl = tempUrl.replace('/','');
+tempUrl = tempUrl.replace('//','');
+tempUrl = tempUrl.replace(':','');
+tempUrl = tempUrl.replace('app.liberi.world','');
+tempUrl = tempUrl.replace('//','');
+
+//debug  console.log("temp  => ",tempUrl);
+
+ return tempUrl;
+
+}
+
+
+
+
+var  socket =  io.connect(); 
+//var socket = io.connect('https://app.liberi.world', {secure: true});
+socket.emit('join',roomname);
+var  $messageForm = $('#messageForm');
+var  $message = $('#message');
+var  $chat = $('#chat');
+var  $output = $('#output');
+
+
+
+
+
+function HtmlEncode(s)
+{
+  var el = document.createElement("div"); 
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}
+
+
+
+$('#roomName').append(decodeURI(HtmlEncode( '/' + roomTrimmer(roomname))));  
+
+//$('#roomName').append(roomname);
+
+// msg send tools start
+
+$("#sender").click(function(f) {
+  f.preventDefault();
+
+
+  let msg = HtmlEncode($message.val());
+  
+  if($message.val() != '' && $message.val() != ' ' )  {
+    socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname, pass:$('#encodeInput').val() });
+    $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
+     $message.val('');
+
+
+  }
+  else  
+      console.log("You cant send an empty message");
+});
+
+
+
+
+
+
+
+ 
+$messageForm.submit(function(e){
+  e.preventDefault();
+  if($message.val() != '' && $message.val() != ' ' )  {
+    
+    //buraya xss tagları removelatacağım
+  //serverdaki send message fonksiyonuna gidiyor
+  //socket.emit('send message', HtmlEncode($message.val()),roomname );
+
+  
+
+
+
+  socket.emit('send message', { msg:HtmlEncode($message.val()),roomName:roomname, pass:$('#encodeInput').val() });
+  $chat.append('<div class="w-full float-left">'+'<div class="animated fadeIn      p-5  float-right">'+ '<i class="fas fa-paper-plane text-gray-400"></i>'+'<span  class=" shadow-lg p-2 bg-gray-400  rounded-full">' + HtmlEncode($message.val())   + '</span>'  +'</div>'+ '</div>' ) ;
+  $message.val('');
+}
+else  
+  console.log("You cant send an empty message");
+  
+});
+
+// msg send tools end
+
+
+
+
+
+
+/*encode/decode start */ 
+
+// ids= encodeInput , encodeBtn
+
+
+
+
+
+var Encount = 0;
+
+$("#encodeBtn").click(function(f) {
+  f.preventDefault();
+
+
+  ++Encount;
+
+  if(Encount%2 === 0){  // remove pass
+    //passi local storageden silicem
+    
+    Encount = 0;
+    $('#encodeInput').val('');
+    $('#encodeInput').removeAttr('disabled','disabled');
+    $('#encodeBtn').removeClass("fa-unlock-alt");
+    $('#encodeBtn').addClass("fa fa-key");  
+   
+
+
+
+
+
+
+
+
+
+
+  }
+
+  else { //first press set pass
+    //burda passi local storage geçireceğim böylelikle her seferinde girmesine gerek kalmıyıcak
+    $('#encodeBtn').removeClass("fa fa-key");  
+    $('#encodeBtn').addClass("fa-unlock-alt");
+
+            let pass = $('#encodeInput').val();
+
+       
+        if(pass != '' && pass != ' ' )  {
+        
+
+
+          //$('#encodeInput').val('');
+          $('#encodeInput').attr('disabled','disabled');
+          //pass alındı bunu localstorage atabilirim böylelikle her seferinde girmek zorunda kalmaz
+          //console.log(pass);
+          
+          
+         
+          
+
+
+        }
+        else  
+            console.log("You cant send an empty message");
+
+
+          }
+   
+    
+    
+
+ 
+});
+
+
+
+
+/*encode/decode end */
+
+
+
+
+ 
+socket.on('new message', function(data){
+  
+  //console.log(data+ '<br /> room name : ' + roomname);
+  
+
+  
+  //Decode start  
+
+ 
+  
+  if(data.pass === $('#encodeInput').val() ){
+
+    let decip = CryptoJS.AES.decrypt(data.msg, data.pass).toString(CryptoJS.enc.Utf8);
+    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-lock-open text-blue-300"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ decip   + '</span>'  +'</div>' ) ;
+ 
+  }
+  //Decode End
+  else{
+
+    if(data.msg.slice(0,9) === "U2FsdGVkX"){
+
+      $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-lock text-blue-400"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg.slice(0, 13)   + '</span>'  +'</div>' ) ;
+ 
+    
+    }
+    else
+    $chat.append('<div class="animated fadeIn   w-full    p-5 float-left">'+ '<i class="  fas fa-paper-plane text-blue-400"></i>'+'<span class="shadow-lg  p-2 bg-blue-200  rounded-full">'+ data.msg   + '</span>'  +'</div>' ) ;
+ 
+
+  }
+    
+  
+
+  
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+$('#darkpalette').click(function () {
+  $('#RNname').empty();
+  $('#RNname').removeClass('invisible');
+  
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html> 
+<script src="/js/animations.js"></script>
+
+
+
+ <!-- Scripts buraya gelicek burdan local encoding ve storage yapabilirim 
+aynı zamanda socketlarda buraya gelicek-->

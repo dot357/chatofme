@@ -117,12 +117,21 @@ console.log('Server Runing and Functioning...');
 // ana sayfayı sunmak için
 app.get('/', function(req, res){
 
-    res.sendFile(__dirname + '/landing.html');
+    res.sendFile(__dirname + '/index.html');
     //res.sendFile(__dirname + '/landing.html');
     
 
 });
 
+
+// Web sürümü
+app.get('/web', function(req, res){
+
+    res.sendFile(__dirname + '/landing.html');
+    //res.sendFile(__dirname + '/landing.html');
+    
+
+});
 
 //brief start
 
